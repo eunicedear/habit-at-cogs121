@@ -1,0 +1,41 @@
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 20px;
+	font-family: 'Montserrat';
+}
+
+h3 {
+	text-align: center;
+	padding: 10px;
+	color: #5A5A5A;
+	font-family: 'Montserrat';
+}
+
+p {
+	margin: 10px auto 10px;
+}
+
+.login-form {
+	text-align: center;
+}
+
+form {
+	display: block;
+	padding: 1em;
+	width: 100%;
+}
+
+input {
+	display: block;
+	padding: 1em;
+}
+
+.btn {
+	border-radius: 50px;
+	margin: auto;
+}
