@@ -8,10 +8,10 @@ app.use(express.static('static'));
 console.log('Your Directory Name: ' + __dirname);
 
 const fakeUserDatabase = {
-  'sam': {userid: '1', name: 'Sam', email: 'sam@gmail.com', pet: 'cat.png'},
-  'john': {userid: '2', name: 'John', email: 'john@gmail.com',   pet: 'dog.png'},
-  'eunice': {userid: '3', name: 'Eunice', email: 'euk046@ucsd.edu',  pet: 'deer.png'},
-  'shelly': {userid: '3', name: 'Shelly', email: 'shellyjbae@gmail.com', pet: 'raccoon.png'},
+  'sam': {userid: '5', name: 'Sam', email: 'sam@gmail.com', pet: 'cat.png'},
+  'john': {userid: '3', name: 'John', email: 'john@gmail.com',   pet: 'dog.png'},
+  'eunice': {userid: '1', name: 'Eunice', email: 'euk046@ucsd.edu',  pet: 'deer.png'},
+  'shelly': {userid: '2', name: 'Shelly', email: 'shellyjbae@gmail.com', pet: 'raccoon.png'},
   'kellie': {userid:'4', name: 'Kellie', email: 'kkhiga@ucsd.edu', pet:'cat.png'}
 };
 
@@ -21,8 +21,12 @@ const fakeHabitsDatabase = {
       {title:'Eat Vegetables', description:'Eat a serving of vegetables every day', due:'10-10-2019', status:'incomplete'},
       {title:'Read More', description:'Read 10 pages or more a day', due:'12-12-2020', status:'complete'}
     ],
-    '2': {title:'Eat Vegetables', description:'Eat a serving of vegetables every day', due:'10-10-2019', status:'incomplete'},
-    '1': {title:'Read More', description:'Read 10 pages or more a day', due:'12-12-2020', status:'complete'}
+    '2': [
+      {title:'Eat Vegetables', description:'Eat a serving of vegetables every day', due:'10-10-2019', status:'incomplete'}
+    ],
+    '1': [
+      {title:'Read More', description:'Read 10 pages or more a day', due:'12-12-2020', status:'complete'}
+    ]
 };
 
 function isUser(useremail) {
@@ -51,10 +55,10 @@ app.get('/habits', (req,res) => {
 
 app.get('/login/:userid', (req,res) => {
   const userid = req.params.userid;
+  const val = fakeUserDatabase[userid];
   console.log(userid, '->', val.userid);
   if(val) {
     currentUser = val.userid;
-
     res.send(val.userid);
   } else {
     res.send({});
