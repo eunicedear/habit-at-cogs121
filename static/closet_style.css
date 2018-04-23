@@ -1,0 +1,26 @@
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h4 {
+	text-align: center;
+	padding: 10px;
+}
+
+.navbar-header {
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+}
+
+.pet-img {
+	display: block;
+	margin: auto;
+	padding: 30px;
+	text-align: center;
+}
+
+.pet-img img {
+	width: 40%;
+	height: auto;
+}
