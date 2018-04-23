@@ -21,9 +21,9 @@ const fakeHabitsDatabase = {
     '4': {title:'Read More', description:'Read 10 pages or more a day', due:'12-12-2020', status:'complete'}
 };
 
-// app.get('/', (req,res) => {
-//   res.redirect('login.html');
-// });
+app.get('/', (req,res) => {
+  res.redirect('login.html');
+});
 
 app.get('/habits', (req,res) => {
   const val = fakeHabitsDatabase[currentUser];
