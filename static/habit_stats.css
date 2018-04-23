@@ -1,0 +1,26 @@
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.habit-list {
+    text-align: center;
+}
+
+h4 {
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 50px;
+	font-family: 'Montserrat';
+}
+
+p {
+	margin: 10px auto 10px;
+}
+
+.section {
+    margin: 30px;
+}
+
+.back-btn {
+    border-radius: 50px;
+}
