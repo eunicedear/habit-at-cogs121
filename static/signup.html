@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<head>
+		<title>Login</title>
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<!-- Custom Styles -->
+		<link href="login_style.css" rel="stylesheet">
+	</head>
+
+	<body>
+
+		<h1>Habit-at</h1>
+		<div class="signup-form">
+			<form action="home.html">
+        <input id="name" type="text" title="name" autocomplete="name" placeholder="Name" />
+        <input id="email" type="email" title="email" autocomplete="email" placeholder="Email" />
+				<input id="userid" type="text" title="username" autocomplete="off" placeholder="Username"/>
+				<input id="password" type="password" title="password" autocomplete="off" placeholder="Password"/>
+
+				<button id="submitButton" type="submit" class="btn">Sign Up</button>
+			</form>
+			<form action="login.html">
+				<p>Already have an account?</p>
+				<button type="submit" class="btn">Login</button>
+			</form>
+		</div>
+
+
+
+
+	<!-- JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+  <script type="main.js"></script>
+	<script type="text/JavaScript">
+		$(document).ready(() => {
+
+			$('#submitButton').click(() => {
+				const requestURL = 'signup/';
+				console.log('Making AJAX request to: ', requestURL);
+
+				$.ajax({
+					url: requestURL,
+					type: 'POST',
+					dataType: 'json',
+					success: (data) => {
+						console.log('You received user data: ', data);
+					},
+				});
+			});
+
+			$(document).ajaxError(() => {
+		    $('#status').html('Error: unknown ajaxError!');
+		  });
+		});
+
+	</script>
+
+</body>
+</html>
