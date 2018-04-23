@@ -11,6 +11,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<!-- Custom Styles --> 
+		<!-- Custom Styles -->
 		<link href="login_style.css" rel="stylesheet">
 	</head>
 
@@ -19,27 +20,50 @@
 		<h1>Habit-at</h1>
 		<div class="login-form">
 			<form action="home.html">
-				<input type="text" title="username" placeholder="Username"/>
-				<input type="password" title="username" placeholder="Password"/>
+				<input id="userid" type="text" title="username" autocomplete="username" placeholder="Username"/>
+				<input id="password" type="password" title="username" autocomplete="off" placeholder="Password"/>
 
-				<button type="submit" class="btn">Login</button>
+				<button id="submitButton" type="submit" class="btn">Login</button>
 			</form>
 			<form action="signup.html">
 				<p>Don't have an account?</p>
 				<button type="submit" class="btn">Sign Up</button>
 			</form>
 		</div>
-		
+
 
 
 
 	<!-- JavaScript -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
   <script type="main.js"></script>
+	<script type="text/JavaScript">
+		$(document).ready(() => {
+
+			$('#submitButton').click(() => {
+				const requestURL = 'login/' + $('#userid').val();
+				console.log('Making AJAX request to: ', requestURL);
+
+				$.ajax({
+					url: requestURL,
+					type: 'GET',
+					dataType: 'json',
+					success: (data) => {
+						console.log('You received user data: ', data);
+					},
+				});
+			});
+
+			$(document).ajaxError(() => {
+		    $('#status').html('Error: unknown ajaxError!');
+		  });
+		});
+
+	</script>
 
 </body>
 </html>
