@@ -22,7 +22,12 @@ const fakeHabitsDatabase = {
 };
 
 app.get('/', (req,res) => {
-  res.redirect('login.html');
+  if(currentUser == null) {
+    res.redirect('login.html');
+  } else {
+    console.log('User' + currentUser + ' already logged in')
+    res.redirect('home.html');
+  }
 });
 
 app.get('/habits', (req,res) => {
