@@ -20,7 +20,7 @@ p {
 	margin: 10px auto 10px;
 }
 
-.login-form {
+.login-form, .signup-form {
 	text-align: center;
 }
 
