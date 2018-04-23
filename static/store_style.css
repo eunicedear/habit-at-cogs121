@@ -20,9 +20,19 @@ h4 {
 	text-align: center;
 }
 
-.pet-img img {
-	width: 40%;
-	height: auto;
+
+.circle {
+	margin: 20px;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	/*background-color: lightgray;*/
+	border-style: solid;
+	border-width: 2px;
+	border-color: lightgray;
+	display: inline-block;
+	text-align: center;
+	line-height: 80px;
 }
 
 .wrapper {
@@ -69,4 +79,9 @@ a {
 	display: inline-block;
 	padding: 0.3em 2em;
 	margin: 0px 20px;
+}
+
+.fix-bottom {
+	position: absolute;
+	bottom: 20px;
 }

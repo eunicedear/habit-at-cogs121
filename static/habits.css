@@ -42,3 +42,9 @@ p {
     height: 70px;
     width: 70px;
 }
+
+.back-btn {
+    position: absolute;
+    left: 10%;
+    
+}
