@@ -13,34 +13,21 @@ $(document).ready(() => {
       success: (data) => {
         console.log('You received some data!', data);
 
-        // if (data.title && data.description && data.due && data.status) {
-        //   $('#status').html('Successfully fetched data at URL: ' + requestURL);
-        //   $('#habitTitle').html('My habit is ' + data.title);
-        //   $('#habitDescription').html('My habit description is ' + data.description);
-        // } else {
-        //   $('#status').html('Error: could not find user at URL: ' + requestURL);
-        //   // clear the display
-        //   $('#habitTitle').html('');
-        //   $('#habitDescription').html('');
-        // }
+        // Loop through all the habits in the array
         for(i = 0; i < data.length; i++) {
-          // console.log(data[i].title);
+          // If the data is valid, has a title and date
           if(data[i].title && data[i].due) {
             console.log('Received valid data');
-            // Select Template
+            // Select Habit Template
             var habitTpl = document.querySelector('.habitTemplate');
-            // console.log(habitTpl);
+            // Select the Habit Inner Content Template
             var habitContent = habitTpl.content.querySelector("a");
-            // console.log(habitContent);
 
-
-            // Edit Template
+            // Edit Template, parse the data in
             habitContent.innerHTML = "<h5>" + data[i].title + "</h5>by " + data[i].due;
-
-            console.log(habitTpl);
-
-
+            // Clone the Template
             var clone = document.importNode(habitTpl.content, true);
+            // Append the clone to the habit list container
             $('.habit-list').append(clone);
           }
           else {
@@ -50,10 +37,7 @@ $(document).ready(() => {
       },
     });
 
-
-
-  // define a generic Ajax error handler:
-  // http://api.jquery.com/ajaxerror/
+  // Error Handler
   $(document).ajaxError(() => {
     $('#status').html('Error: unknown ajaxError!');
   });
