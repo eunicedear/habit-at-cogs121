@@ -43,7 +43,8 @@ $(document).ready(() => {
             console.log('href SET TO: ', ref);
             habitContent.setAttribute("href", ref);
             // Edit Template, parse the data in
-            habitContent.innerHTML = "<h5>" + data[i].name + "</h5>by " + data[i].pet;
+            habitContent.innerHTML = "<h5>" + data[i].name + "</h5>";
+
             // Clone the Template
             var clone = document.importNode(habitTpl.content, true);
             // Append the clone to the habit list container
