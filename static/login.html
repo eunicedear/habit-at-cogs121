@@ -26,10 +26,10 @@
 		<h1>Habit-at</h1>
 		<div class="login-form">
 			<form action="home.html">
-				<input id="userid" type="text" title="username" autocomplete="username" placeholder="Username"/>
-				<input id="password" type="password" title="username" autocomplete="off" placeholder="Password"/>
+				<input id="input-username" type="text" title="username" autocomplete="username" placeholder="Username"/>
+				<input id="input-password" type="password" title="username" autocomplete="off" placeholder="Password"/>
 
-				<button id="submitButton" type="submit" class="btn login-btn">Login</button>
+				<button id="submit-button" type="submit" class="btn login-btn">Login</button>
                 <br>
 				<!-- Google Sign-In -->
 				<div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
@@ -54,16 +54,19 @@
 		<script type="text/JavaScript">
 			$(document).ready(() => {
 
-				$('#submitButton').click(() => {
-					const requestURL = 'login/' + $('#userid').val();
+				$('#submit-button').click(() => {
+					const requestURL = 'login';
 					console.log('Making AJAX request to: ', requestURL);
-
+					console.log($('input-password').val());
 					$.ajax({
 						url: requestURL,
-						type: 'GET',
-						dataType: 'json',
+						type: 'POST',
+						data: {
+										username: $('#input-username').val(),
+										password: $('#input-password').val()
+						},
 						success: (data) => {
-							console.log('You received user data: ', data);
+							console.log('Signed In');
 						},
 					});
 				});
