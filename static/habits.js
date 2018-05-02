@@ -1,7 +1,7 @@
 $(document).ready(() => {
     const requestURL = 'habits';
     console.log('making ajax request to:', requestURL);
-    
+
     $('#createHabit').click(() => {
        $.ajax({
            url: 'habits',
@@ -12,7 +12,8 @@ $(document).ready(() => {
                date: $('#habitDate').val(),
            },
            success: (data) => {
-               $('.habit-list').html(data.message);
+               // $('.habit-list').html(data.message);
+               location.reload();
            }
        });
     });
