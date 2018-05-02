@@ -65,6 +65,27 @@ app.post('/login', (req,res) => {
   );
 });
 
+// POST request for habits
+app.post('/habits', (req, res) => {
+    console.log(req.body);
+    
+    db.run(
+        'INSERT INTO habits_to_child (title, description, due) VALUES ($habit, $description, $date)',
+        {
+            $habit: req.body.habit,
+            $description: req.body.description,
+            $date: req.body.date
+        },
+        (err) => {
+            if (err) {
+                res.send({message: 'Error in app.post(/habits)'});
+            } else {
+                res.send({message: 'Successfully run app.post(/habits)'});
+            }
+        }
+    );
+});
+
 app.listen(3000, () => {
   console.log('Server started at http://localhost:3000/');
 });
