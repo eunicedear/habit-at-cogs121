@@ -6,7 +6,7 @@ app.use(express.static('static'));
 console.log('Your Directory Name: ' + __dirname);
 
 const sqlite3 = require('sqlite3');
-const db = new sqlite.Database('pets.db');
+const db = new sqlite3.Database('habits.db');
 
 // Track login status
 let currentUser = null;
@@ -63,6 +63,27 @@ app.post('/login', (req,res) => {
       }
     }
   );
+});
+
+// POST request for habits
+app.post('/habits', (req, res) => {
+    console.log(req.body);
+    
+    db.run(
+        'INSERT INTO habits_to_child (title, description, due) VALUES ($habit, $description, $date)',
+        {
+            $habit: req.body.habit,
+            $description: req.body.description,
+            $date: req.body.date
+        },
+        (err) => {
+            if (err) {
+                res.send({message: 'Error in app.post(/habits)'});
+            } else {
+                res.send({message: 'Successfully run app.post(/habits)'});
+            }
+        }
+    );
 });
 
 app.listen(3000, () => {

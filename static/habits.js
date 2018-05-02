@@ -1,6 +1,21 @@
 $(document).ready(() => {
     const requestURL = 'habits';
     console.log('making ajax request to:', requestURL);
+    
+    $('#createHabit').click(() => {
+       $.ajax({
+           url: 'habits',
+           type: 'POST',
+           data: {
+               habit: $('#habitName').val(),
+               description: $('#habitDesc').val(),
+               date: $('#habitDate').val(),
+           },
+           success: (data) => {
+               $('.habit-list').html(data.message);
+           }
+       });
+    });
 
     // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
     // Using the core $.ajax() method since it's the most flexible.
