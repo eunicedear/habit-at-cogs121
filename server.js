@@ -1,37 +1,18 @@
 const express = require('express');
 const app = express();
 
-var currentUser = null;
-
 app.use(express.static('static'));
 
 console.log('Your Directory Name: ' + __dirname);
 
-const fakeUserDatabase = {
-  'sam': {userid: '5', name: 'Sam', email: 'sam@gmail.com', pet: 'cat.png'},
-  'john': {userid: '3', name: 'John', email: 'john@gmail.com',   pet: 'dog.png'},
-  'eunice': {userid: '1', name: 'Eunice', email: 'euk046@ucsd.edu',  pet: 'deer.png'},
-  'shelly': {userid: '2', name: 'Shelly', email: 'shellyjbae@gmail.com', pet: 'raccoon.png'},
-  'kellie': {userid:'4', name: 'Kellie', email: 'kkhiga@ucsd.edu', pet:'cat.png'}
-};
+const sqlite3 = require('sqlite3');
+const db = new sqlite3.Database('habits.db');
 
-const fakeHabitsDatabase = {
-    '4': [
-      {title:'Sleep Earlier Every Day', description:'Sleep by 8pm every day', due:'09-14-2018', status:'complete'},
-      {title:'Eat Vegetables', description:'Eat a serving of vegetables every day', due:'10-10-2019', status:'incomplete'},
-      {title:'Read More', description:'Read 10 pages or more a day', due:'12-12-2020', status:'complete'}
-    ],
-    '2': [
-      {title:'Eat Vegetables', description:'Eat a serving of vegetables every day', due:'10-10-2019', status:'incomplete'}
-    ],
-    '1': [
-      {title:'Read More', description:'Read 10 pages or more a day', due:'12-12-2020', status:'complete'}
-    ]
-};
+// Track login status
+let currentUser = null;
 
-function isUser(useremail) {
-    return useremail.name === 'cherries';
-}
+let currentChild = null;
+
 
 app.get('/', (req,res) => {
   if(currentUser == null) {
@@ -43,26 +24,45 @@ app.get('/', (req,res) => {
 });
 
 app.get('/habits', (req,res) => {
-  const val = fakeHabitsDatabase[currentUser];
-  console.log('Current User:', currentUser);
-  console.log(currentUser, '->', val);
-  if(val) {
-    res.send(val);
-  } else {
-    res.send({});
-  }
+  db.all(
+    'SELECT * FROM habits_to_child WHERE childid=$child',
+    {
+      $child: currentChild
+    },
+    (err, rows) => {
+      if (rows.length > 0) {
+        res.send(rows);
+      } else {
+        res.send({});
+      }
+    }
+  );
 });
 
-app.get('/login/:userid', (req,res) => {
-  const userid = req.params.userid;
-  const val = fakeUserDatabase[userid];
-  console.log(userid, '->', val.userid);
-  if(val) {
-    currentUser = val.userid;
-    res.send(val.userid);
-  } else {
-    res.send({});
-  }
+//POST request is for posting new data to the Server
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.post('/login', (req,res) => {
+  console.log(req.body);
+  const username = req.params.userid;
+  db.run(
+    'SELECT * from users_to_accounts WHERE username=$username', {
+      $username: req.body.username
+    },
+    (err) => {
+      if(err) {
+        res.send({
+          message: 'error in app.post(/login)'
+        });
+      } else {
+        res.send({
+          message: 'successfully run app.post(/login)'
+        });
+      }
+    }
+  );
 });
 
 app.listen(3000, () => {
