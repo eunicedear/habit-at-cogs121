@@ -37,5 +37,8 @@ input {
 
 .btn {
 	border-radius: 50px;
-	margin: auto;
+	/* margin: auto; */
+	width: 50%;
+	margin: 5px auto;
+	/* padding: 20px; */
 }
