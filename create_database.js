@@ -22,7 +22,7 @@ db.serialize(() => {
   //Create table for user accounts
   db.run("CREATE TABLE users_to_accounts (userid INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT, name TEXT, phone TEXT)");
   // Create table for child accounts
-  db.run("CREATE TABLE children_to_user (childid INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, name TEXT, pet TEXT, FOREIGN KEY(userid) REFERENCES users_to_accounts(userid))");
+  db.run("CREATE TABLE children_to_user (childid INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, name TEXT, pet TEXT, points INTEGER, FOREIGN KEY(userid) REFERENCES users_to_accounts(userid))");
   // Create table for habits
   db.run("CREATE TABLE habits_to_child (habitid INTEGER PRIMARY KEY AUTOINCREMENT, childid INTEGER, title TEXT, description TEXT, due TEXT, status INTEGER, FOREIGN KEY(childid) REFERENCES children_to_user(childid))");
 
@@ -30,7 +30,7 @@ db.serialize(() => {
   console.log("Initializing Databases");
   db.run("INSERT INTO users_to_accounts(username, email, password, name, phone) VALUES ('eunicedear', 'euk046@ucsd.edu', 'help', 'Eunice Kim', '1234567891')");
   console.log("SUCCESS: Insert into users_to_accounts");
-  db.run("INSERT INTO children_to_user (userid, name, pet) VALUES (1, 'Dear Child', 'dear.png')");
+  db.run("INSERT INTO children_to_user (userid, name, pet, points) VALUES (1, 'Dear Child', 'dear.png', 0)");
   console.log("SUCCESS: Insert into children_to_user");
   db.run("INSERT INTO habits_to_child (childid, title, description, due, status) VALUES (1, 'Sleep Earlier', 'Sleep by 8pm every day', '10-10-18', 1)");
   console.log("SUCCESS: Insert into habits_to_child");
