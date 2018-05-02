@@ -4,7 +4,7 @@
 
 h4 {
 	text-align: center;
-	padding: 10px;
+	/* padding: 10px; */
 }
 
 p {
@@ -21,13 +21,13 @@ p {
 .pet-img {
 	display: block;
 	margin: auto;
-	padding: 10px;
+	/* padding: 10px; */
 	text-align: center;
 }
 
 
 .circle {
-	margin: 20px;
+	/* margin: 20px; */
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
@@ -82,8 +82,8 @@ a {
 .btn {
 	border-radius: 50px;
 	display: inline-block;
-	padding-top: 0px;
-	padding-bottom: 20px;
+	padding-top: 10px;
+	/* padding-bottom: 20px; */
 }
 
 .button {
@@ -98,4 +98,8 @@ a {
 .fix-bottom {
 	position: absolute;
 	bottom: 20px;
+}
+
+.toggleSelected.clicked {
+	background-color: lightgray;
 }
