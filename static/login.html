@@ -25,13 +25,14 @@
 
 		<h1>Habit-at</h1>
 		<div class="login-form">
-			<form action="home.html">
+			<form action="">
 				<input id="input-username" type="text" title="username" autocomplete="username" placeholder="Username"/>
 				<input id="input-password" type="password" title="username" autocomplete="off" placeholder="Password"/>
-
+				<p id="login-alert" class="text-warning d-none"><b>Incorrect username or password!</b></p>
 				<button id="submit-button" type="submit" class="btn login-btn">Login</button>
                 <br>
 				<!-- Google Sign-In -->
+
 				<div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
 			</form>
 			<form action="signup.html">
@@ -50,16 +51,15 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
-	  <script type="main.js"></script>
 		<script type="text/JavaScript">
 			$(document).ready(() => {
 
+				// When Submit Button is clicked make AJAX request
 				$('#submit-button').click(() => {
-					const requestURL = 'login';
-					console.log('Making AJAX request to: ', requestURL);
-					console.log($('input-password').val());
+					// $('#login-alert').addClass('d-none');
+					console.log('Making AJAX request to: ', 'login');
 					$.ajax({
-						url: requestURL,
+						url: 'login',
 						type: 'POST',
 						data: {
 										username: $('#input-username').val(),
@@ -67,12 +67,14 @@
 						},
 						success: (data) => {
 							console.log('Signed In');
+							location.href = "accounts.html";
 						},
 					});
 				});
 
 				$(document).ajaxError(() => {
-			    $('#status').html('Error: unknown ajaxError!');
+						console.log('AJAX ERROR');
+						$('#login-alert').removeClass('d-none');
 			  });
 			});
 
