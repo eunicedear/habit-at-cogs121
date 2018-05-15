@@ -25,6 +25,10 @@ db.serialize(() => {
   db.run("CREATE TABLE children_to_user (childid INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, name TEXT, pet TEXT, points INTEGER, FOREIGN KEY(userid) REFERENCES users_to_accounts(userid))");
   // Create table for habits
   db.run("CREATE TABLE habits_to_child (habitid INTEGER PRIMARY KEY AUTOINCREMENT, childid INTEGER, title TEXT, description TEXT, due TEXT, status INTEGER, FOREIGN KEY(childid) REFERENCES children_to_user(childid))");
+  // Create table for Accessories
+  db.run("CREATE TABLE accessories (accessoryid INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, points INTEGER)");
+
+
 
   //Initialize Database
   console.log("Initializing Databases");
@@ -34,6 +38,7 @@ db.serialize(() => {
   console.log("SUCCESS: Insert into children_to_user");
   db.run("INSERT INTO habits_to_child (childid, title, description, due, status) VALUES (1, 'Sleep Earlier', 'Sleep by 8pm every day', '10-10-18', 1)");
   console.log("SUCCESS: Insert into habits_to_child");
+
 
   db.all("SELECT * FROM users_to_accounts", (err, row) => {
     console.log(row);
