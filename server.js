@@ -72,6 +72,7 @@ app.post('/createAccount', (req, res) => {
     // IF unsucessful inserting new user
     if (err) {
       // Send response = error status
+      console.log('ERROR');
       res.sendStatus(500);
     } else {
       // Database query for user just added
@@ -98,7 +99,7 @@ app.post('/createAccount', (req, res) => {
 // Returns array of all user's children from database as res(ponse)
 app.post('/children', (req, res) => {
   console.log('Request body at /children: ', req.body);
-  if (req.body.userid) {
+  if (!req.body.userid) {
     // Redirect to Login if no userid
     res.redirect('login.html');
   } else {
@@ -114,7 +115,7 @@ app.post('/children', (req, res) => {
       } else {
         // Send response = empty {}
         console.log('User has no children, sending {}...');
-        res.sendStatus({});
+        res.send({});
       }
     });
   }
@@ -230,11 +231,37 @@ app.post('/createHabit', (req, res) => {
   });
 });
 
+// POST request, run when user submits "Edit Habit" form
+// Receives title, description, and date in req(uest) body
+// Returns status (Success OR Error)
+app.post('/updateHabit', (req, res) => {
+  console.log('Request body at /updateHabit: ', req.body);
+  // TODO: Add error checking for request body
+  // Database query to add habit to habits table
+  db.run('UPDATE habits_to_child SET title=$title, description=$description, due=$date WHERE habitid=$habitid', {
+    $title: req.body.title,
+    $description: req.body.description,
+    $date: req.body.date,
+    $habitid: req.body.habitid
+  }, (err) => {
+    // IF unsuccessful inserting new habit
+    if (err) {
+      // Send response = error status
+      res.sendStatus(500);
+    } else {
+      // Send response = success status
+      res.send({
+        message: 'Successfully added new habit to database!'
+      });
+    }
+  });
+});
+
 // POST request, run when navigating to habits page
 // Receives childid in req(uest) body
 // Returns array of child's habits as res(ponse)
 app.post('/habitStats', (req, res) => {
-  console.log('Request body at /habit_stats: ', req.body);
+  console.log('Request body at /habitStats: ', req.body);
   if (!req.body.habitid) {
     // Redirect to accounts if no childid
     res.redirect('habits.html');
