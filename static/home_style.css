@@ -56,6 +56,8 @@ a {
 	line-height: 80px;
 }
 
+.back-btn {
+    position: absolute;
+    left: 10%;
 
-
-
+}

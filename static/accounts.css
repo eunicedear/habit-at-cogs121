@@ -25,13 +25,14 @@ p {
     text-align: center;
 }
 
-.lock-btn {
+.logout-btn {
     position: absolute;
     left: 14%;
     bottom: 5%;
     border-radius: 50%;
     height: 70px;
     width: 70px;
+		font-size: 12px;
 }
 
 .add-btn {
@@ -41,10 +42,4 @@ p {
     border-radius: 50%;
     height: 70px;
     width: 70px;
-}
-
-.back-btn {
-    position: absolute;
-    left: 10%;
-
 }
