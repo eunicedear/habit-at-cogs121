@@ -114,7 +114,7 @@ app.post('/children', (req, res) => {
       } else {
         // Send response = empty {}
         console.log('User has no children, sending {}...');
-        res.sendStatus(204);
+        res.sendStatus({});
       }
     });
   }
@@ -170,7 +170,7 @@ app.post('/home', (req, res) => {
       } else {
         // Send response = empty {}
         console.log('No child with that childid, sending {}...');
-        res.sendStatus(204);
+        res.send({});
       }
     });
   }
@@ -198,7 +198,7 @@ app.post('/habits', (req, res) => {
       } else {
         // Send response = empty {}
         console.log('Child has no habits, sending {}...');
-        res.sendStatus(204);
+        res.send({});
       }
     });
   }
@@ -211,10 +211,11 @@ app.post('/createHabit', (req, res) => {
   console.log('Request body at /createHabit: ', req.body);
   // TODO: Add error checking for request body
   // Database query to add habit to habits table
-  db.run('INSERT INTO habits_to_child (title, description, due) VALUES ($title, $description, $date)', {
+  db.run('INSERT INTO habits_to_child (title, description, due, childid) VALUES ($title, $description, $date, $childid)', {
     $title: req.body.title,
     $description: req.body.description,
-    $date: req.body.date
+    $date: req.body.date,
+    $childid: req.body.childid
   }, (err) => {
     // IF unsuccessful inserting new habit
     if (err) {
