@@ -1,24 +1,8 @@
 $(document).ready(() => {
-    $('#createChild').click(() => {
-       $.ajax({
-           url: 'createChild',
-           type: 'POST',
-           data: {
-               userid: localStorage.getItem('userid'),
-               name: $('#input-name').val(),
-               pet: $('#input-pet').val(),
-           },
-           success: (data) => {
-               $('.habit-list').html(data.message);
-               location.reload();
-           }
-       });
-    });
-
     console.log('User ID in localStorage is: ', localStorage.getItem('userid'));
     $.ajax({
       // all URLs are relative to http://localhost:3000/
-      url: 'accounts',
+      url: 'children',
       type: 'POST',
       data: {
           userid: localStorage.getItem('userid')
@@ -32,42 +16,45 @@ $(document).ready(() => {
           if(data[i].name && data[i].pet) {
             console.log('Received valid data');
             // Select Habit Template
-            var habitTpl = document.querySelector('.accountTemplate');
+            var accountTpl = document.querySelector('.accountTemplate');
             // Select the Habit Inner Content Template
-            var habitContent = habitTpl.content.querySelector("a");
-            var ref = "home.html?childid=" + data[i].childid;
-            console.log('href SET TO: ', ref);
-            habitContent.setAttribute("href", ref);
+            var accountContent = accountTpl.content.querySelector("#child-name");
             // Edit Template, parse the data in
-            habitContent.innerHTML = "<h5>" + data[i].name + "</h5>";
-
+            accountContent.innerHTML = data[i].name;
             // Clone the Template
-            var clone = document.importNode(habitTpl.content, true);
+            var clone = document.importNode(accountTpl.content, true);
             // Append the clone to the habit list container
             $('.account-list').append(clone);
           }
           else {
-            document.querySelector('.habit-list').innerHTML = "<h5>Click the (+) to add a new habit</h5>";
+            document.querySelector('.account-list').innerHTML = "<h5>Click the (+) to add a new habit</h5>";
           }
         }
       },
     });
 
-
     $('#child-btn').click(() => {
-      console.log("Clicked on child button");
       let childid = $('#child-btn').getAttribute("childid");
       localStorage.setItem('childid', childid);
-      $.ajax({
-        url: 'home',
-        type: 'POST',
-        data: {
-            childid: childid
-        },
-        success: (data) => {
-          // location.href="home.html";
-        }
-      });
+      // Redirect to pet page
+      location.href('home.html');
+    });
+
+    $('#createChild').click(() => {
+       $.ajax({
+           url: 'createChild',
+           type: 'POST',
+           data: {
+               userid: localStorage.getItem('userid'),
+               name: $('#input-name').val(),
+               pet: $('#input-pet').val(),
+           },
+           success: (data) => {
+               // $('.habit-list').html(data.message);
+               // Reload the page to show new child
+               location.reload();
+           }
+       });
     });
 
   // Error Handler
