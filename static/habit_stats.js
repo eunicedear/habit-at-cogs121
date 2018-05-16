@@ -28,4 +28,20 @@ $(document).ready(() => {
         }
     },
   });
+
+  $('#updateHabit').click(() => {
+    $.ajax({
+      url: 'updateHabit',
+      type: 'POST',
+      data: {
+        title: $('#input-title').val(),
+        description: $('#input-description').val(),
+        date: $('#input-date').val(),
+        habitid: localStorage.getItem('habitid')
+      },
+      success: (data) => {
+        location.reload();
+      }
+    });
+  });
 });
