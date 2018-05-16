@@ -230,6 +230,37 @@ app.post('/createHabit', (req, res) => {
   });
 });
 
+// POST request, run when navigating to habits page
+// Receives childid in req(uest) body
+// Returns array of child's habits as res(ponse)
+app.post('/habitStats', (req, res) => {
+  console.log('Request body at /habit_stats: ', req.body);
+  if (!req.body.habitid) {
+    // Redirect to accounts if no childid
+    res.redirect('habits.html');
+  } else {
+    // Database query for habits with matching childid
+    db.all('SELECT * FROM habits_to_child WHERE habitid=$habitid', {
+      $habitid: req.body.habitid
+    }, (err, data) => {
+      // IF database query finds habits with matching childid
+
+      if (data.length > 0) {
+        console.log('found: ', data);
+        // Send response = the result of the query
+        res.send(data[0]);
+        // ELSE database query did not find any habits with childid
+      } else {
+        // Send response = empty {}
+        console.log('No habit data for that habit id, sending {}...');
+        res.send({});
+      }
+    });
+  }
+});
+
+
+
 
 // app.post('/verifyChild', (req, res) => {
 //   db.all(
