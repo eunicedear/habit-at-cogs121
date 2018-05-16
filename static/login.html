@@ -66,8 +66,10 @@
 										password: $('#input-password').val()
 						},
 						success: (data) => {
-							console.log('Signed In');
-							location.href = "accounts.html";
+							console.log('Signed In', data);
+							console.log('userid', data.userid);
+							window.localStorage.setItem('userid', data.userid);
+							// location.href = "accounts.html";
 						},
 					});
 				});
