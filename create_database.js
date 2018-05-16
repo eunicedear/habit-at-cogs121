@@ -26,7 +26,7 @@ db.serialize(() => {
   // Create table for habits
   db.run("CREATE TABLE habits_to_child (habitid INTEGER PRIMARY KEY AUTOINCREMENT, childid INTEGER, title TEXT, description TEXT, due TEXT, status INTEGER, FOREIGN KEY(childid) REFERENCES children_to_user(childid))");
   // Create table for Accessories
-  db.run("CREATE TABLE accessories_store (accessoryid INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, points INTEGER)");
+  db.run("CREATE TABLE accessories_store (accessoryid INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, dogUrl TEXT, points INTEGER)");
   // Create table for Owned Accessories
   db.run("CREATE TABLE child_to_accessories (childid INTEGER, accessoryid INTEGER, FOREIGN KEY(childid) REFERENCES children_to_user(childid), FOREIGN KEY(accessoryid) REFERENCES accessories_store(accessoryid))");
 
@@ -51,6 +51,10 @@ db.serialize(() => {
   });
 
   db.all("SELECT * FROM habits_to_child", (err, row) => {
+    console.log(row);
+  });
+
+  db.all("SELECT * FROM accessories_store", (err, row) => {
     console.log(row);
   });
 });

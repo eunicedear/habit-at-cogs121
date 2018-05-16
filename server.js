@@ -308,7 +308,7 @@ app.post('/habitStats', (req, res) => {
 
 
 app.post('/pet-preview', (req, res) => {
-  db.all('SELECT url FROM child-to-accessories WHERE accessoryid=$accessoryid', {
+  db.all('SELECT dogUrl FROM accessories_store WHERE accessoryid=$accessoryid', {
     $accessoryid: req.body.accessoryid
   }, (err, data) => {
     console.log('pet-preview url ' + data);

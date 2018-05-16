@@ -28,6 +28,10 @@ db.serialize(() => {
   db.all("SELECT * FROM habits_to_child", (err, row) => {
     console.log(row);
   });
+
+  db.all("SELECT * FROM accessories_store", (err, row) => {
+    console.log(row);
+  });
 });
 
 db.close();

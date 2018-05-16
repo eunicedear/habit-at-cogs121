@@ -26,7 +26,7 @@ h4 {
 }
 
 #petImg-id {
-	
+
 }
 
 .wrapper {
@@ -52,12 +52,24 @@ h4 {
 }
 
 .items {
+	text-align: center;
+	justify-content: center;
+	/* background-color: lightgray; */
+	line-height: 60px;
+	width: 68px;
+	height: 68px;
+	margin: 0 auto;
+	display: inline-block;
+}
+
+.item-img {
 	justify-content: center;
 	/* background-color: lightgray; */
 	width: 50px;
 	height: 50px;
 	margin: 0 auto;
 	display: inline-block;
+	vertical-align: middle;
 }
 
 

@@ -1,5 +1,5 @@
 function handleItemClick(element) {
-  let accessoryid = element.getAttribute("accesoryid");
+  let accessoryid = element.getAttribute("accessoryid");
   console.log('accessory ', accessoryid, ' clicked');
   localStorage.setItem('accessoryid', accessoryid);
   // Untoggle any buttons that have been toggled has to be the second cuz if it doesnt exist its created
@@ -12,7 +12,7 @@ function handleItemClick(element) {
 // Matches with items with attribute -- onclick="handleItemClick(this)"
 function updatePetImage(accessoryid) {
   // get url from child-to-accessories table using id from localStorage? Can u push your code
-  $.ajax({ 
+  $.ajax({
     url: 'pet-preview',
     type: 'POST',
     data: {
@@ -20,7 +20,7 @@ function updatePetImage(accessoryid) {
     },
     success: (data) => {
       console.log('Data received, url: ', data);
-      $('.pet-img').setAttribute('src', "assets/accessories_on/" + data);
+      $('#pet-img').attr('src', "assets/accessories_on/" + data[0].dogUrl);
     }
   });
 }
