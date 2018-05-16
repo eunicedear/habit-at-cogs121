@@ -58,6 +58,11 @@ $(document).ready(() => {
     });
   });
 
+  $('#logout-btn').click(() => {
+    localStorage.clear();
+    location.href = 'login.html';
+  });
+
   // Error Handler
   $(document).ajaxError(() => {
     $('#status').html('Error: unknown ajaxError!');
