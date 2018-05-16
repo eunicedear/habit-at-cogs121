@@ -19,7 +19,7 @@ const db = new sqlite3.Database('habits.db');
 // Redirects user to accounts page as res(ponse)
 // Note: Accounts page handles redirecting user if not logged in
 app.get('/', (req, res) => {
-  res.redirect('accounts.html');
+  res.redirect('login.html');
 });
 
 
@@ -98,7 +98,7 @@ app.post('/createAccount', (req, res) => {
 // Returns array of all user's children from database as res(ponse)
 app.post('/children', (req, res) => {
   console.log('Request body at /children: ', req.body);
-  if (req.body.userid) {
+  if (!req.body.userid) {
     // Redirect to Login if no userid
     res.redirect('login.html');
   } else {
