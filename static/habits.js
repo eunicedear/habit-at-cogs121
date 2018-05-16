@@ -1,11 +1,17 @@
-$(document).ready(() => {
+function handleHabitClick(element) {
+  let habitid = element.getAttribute("habitid");
+  console.log('bait ', habitid, ' clicked');
+  localStorage.setItem('habitid', habitid);
+  location.href = 'habit_stats.html';
+}
 
+$(document).ready(() => {
   $.ajax({
     // all URLs are relative to http://localhost:3000/
-    url: requestURL,
+    url: 'habits',
     type: 'POST',
     data: {
-      childid: localStorage.getItem('childid');
+      childid: localStorage.getItem('childid')
     },
     success: (data) => {
       console.log('You received some data!', data);
@@ -20,12 +26,14 @@ $(document).ready(() => {
           var habitContent = habitTpl.content.querySelector("a");
           // Edit Template, parse the data in
           habitContent.innerHTML = "<h5>" + data[i].title + "</h5>by " + data[i].due;
+          habitContent.setAttribute('habitid', data[i].habitid);
+
           // Clone the Template
           var clone = document.importNode(habitTpl.content, true);
           // Append the clone to the habit list container
           $('.habit-list').append(clone);
         } else {
-          document.querySelector('.habit-list').content = "<h5>Click the (+) to add a new habit</h5>";
+          document.querySelector('.habit-list').content = "<h5 class='text-center'>Click the (+) to add a new habit</h5>";
         }
       }
     },
@@ -39,6 +47,7 @@ $(document).ready(() => {
         title: $('#habitName').val(),
         description: $('#habitDesc').val(),
         date: $('#habitDate').val(),
+        childid: localStorage.getItem('childid')
       },
       success: (data) => {
         location.reload();
