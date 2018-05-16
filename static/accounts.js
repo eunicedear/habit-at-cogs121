@@ -1,12 +1,10 @@
 $(document).ready(() => {
-    const requestURL = 'accounts';
-    console.log('making ajax request to:', requestURL);
-
     $('#createChild').click(() => {
        $.ajax({
            url: 'createChild',
            type: 'POST',
            data: {
+               userid: localStorage.getItem('userid'),
                name: $('#input-name').val(),
                pet: $('#input-pet').val(),
            },
@@ -17,16 +15,14 @@ $(document).ready(() => {
        });
     });
 
-
-
-    // From: http://learn.jquery.com/ajax/jquery-ajax-methods/
-    // Using the core $.ajax() method since it's the most flexible.
-    // ($.get() and $.getJSON() are nicer convenience functions)
+    console.log('User ID in localStorage is: ', localStorage.getItem('userid'));
     $.ajax({
       // all URLs are relative to http://localhost:3000/
-      url: requestURL,
-      type: 'GET',
-      dataType : 'json', // this URL returns data in JSON format
+      url: 'accounts',
+      type: 'POST',
+      data: {
+          userid: localStorage.getItem('userid')
+      },
       success: (data) => {
         console.log('You received some data!', data);
 
@@ -59,14 +55,17 @@ $(document).ready(() => {
 
 
     $('#child-btn').click(() => {
-      console.log("CLICK EVENT");
-      const childURL = $('#child-btn').getAttribute("childid");
-      const routeURL = "home/" + childURL;
+      console.log("Clicked on child button");
+      let childid = $('#child-btn').getAttribute("childid");
+      localStorage.setItem('childid', childid);
       $.ajax({
-        url: routeURL,
-        type: 'GET',
+        url: 'home',
+        type: 'POST',
+        data: {
+            childid: childid
+        },
         success: (data) => {
-          location.href="home.html";
+          // location.href="home.html";
         }
       });
     });
