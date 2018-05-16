@@ -98,7 +98,7 @@ app.post('/createAccount', (req, res) => {
 // Returns array of all user's children from database as res(ponse)
 app.post('/children', (req, res) => {
   console.log('Request body at /children: ', req.body);
-  if (!req.body.userid) {
+  if (req.body.userid) {
     // Redirect to Login if no userid
     res.redirect('login.html');
   } else {
