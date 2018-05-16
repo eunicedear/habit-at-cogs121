@@ -26,9 +26,9 @@ db.serialize(() => {
   // Create table for habits
   db.run("CREATE TABLE habits_to_child (habitid INTEGER PRIMARY KEY AUTOINCREMENT, childid INTEGER, title TEXT, description TEXT, due TEXT, status INTEGER, FOREIGN KEY(childid) REFERENCES children_to_user(childid))");
   // Create table for Accessories
-  db.run("CREATE TABLE accessories-store (accessoryid INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT PRIMARY KEY, dogUrl TEXT PRIMARY KEY, points INTEGER)");
+  db.run("CREATE TABLE accessories_store (accessoryid INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, points INTEGER)");
   // Create table for Owned Accessories
-  db.run("CREATE TABLE child-to-accessories (childid INTEGER, accessoryid INTEGER, FOREIGN KEY(childid) REFERENCES children_to_user(childid), FOREIGN KEY(accessoryid) REFERENCES accessories-store(accessoryid))");
+  db.run("CREATE TABLE child_to_accessories (childid INTEGER, accessoryid INTEGER, FOREIGN KEY(childid) REFERENCES children_to_user(childid), FOREIGN KEY(accessoryid) REFERENCES accessories_store(accessoryid))");
 
 
 
@@ -38,7 +38,7 @@ db.serialize(() => {
   console.log("SUCCESS: Insert into users_to_accounts");
   db.run("INSERT INTO children_to_user (userid, name, pet, points) VALUES (1, 'Dear Child', 'dear.png', 0)");
   console.log("SUCCESS: Insert into children_to_user");
-  db.run("INSERT INTO habits_to_child (childid, title, description, due, status) VALUES (1, 'Sleep Earlier', 'Sleep by 8pm every day', '10-10-18', 1)");
+  db.run("INSERT INTO habits_to_child (childid, title, description, due, status) VALUES (1, 'Sleep Earlier', 'Sleep by 8pm every day', '2018-10-10', 1)");
   console.log("SUCCESS: Insert into habits_to_child");
 
 
