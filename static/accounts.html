@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <head>
-        <title>Habits</title>
+        <title>Accounts</title>
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -20,6 +20,14 @@
     </head>
 
     <body>
+      <script type="text/javascript">
+        if (localStorage.getItem('userid') === null) {
+          // User not logged in, redirect to login
+          location.href = 'login.html';
+        } else {
+          console.log("User is logged in!");
+        }
+      </script>
         <div class="container-fluid">
             <div class="account-list">
 
@@ -100,8 +108,8 @@
         </div>
 
         <template class="accountTemplate">
-          <a id="child-btn" class="child-btn btn btn-light habit-btn" href="home.html" childid="" role="button">
-            <h5 id="child-name">Change this</h5>
+          <a class="child-btn btn btn-light" childid="0" role="button" onclick="handleChildClick(this)">
+            <h5>Change this</h5>
         </a>
           <br>
         </template>
