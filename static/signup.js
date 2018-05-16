@@ -10,12 +10,17 @@ $(document).ready(() => {
         password: $('#password').val()
       },
       success: (data) => {
-        // $('.signup-form').html(data.message);
+        console.log('New user added, ', data);
+        localStorage.setItem('userid', data.userid);
+        // Redirect to accounts page
         location.href = "accounts.html";
       }
     });
   });
   $(document).ajaxError(() => {
-    $('#status').html('Error: unknown ajaxError!');
+    console.log("AJAX Error in signup.js");
+    // $('#status').html('Error: unknown ajaxError!');
   });
 });
+
+// TODO: Add form validation checking!!
