@@ -1,3 +1,10 @@
+function handleChildClick(element) {
+  let childid = element.getAttribute("childid");
+  console.log('child ', childid, ' clicked');
+  localStorage.setItem('childid', childid);
+  location.href = 'home.html';
+}
+
 $(document).ready(() => {
   $.ajax({
     // all URLs are relative to http://localhost:3000/
@@ -17,9 +24,11 @@ $(document).ready(() => {
           // Select Habit Template
           var accountTpl = document.querySelector('.accountTemplate');
           // Select the Habit Inner Content Template
-          var accountContent = accountTpl.content.querySelector("#child-name");
+          var accountContent = accountTpl.content.querySelector("a");
+          var accountName = accountTpl.content.querySelector("h5");
           // Edit Template, parse the data in
-          accountContent.innerHTML = data[i].name;
+          accountName.innerHTML = data[i].name;
+          accountContent.setAttribute('childid', data[i].childid);
           // Clone the Template
           var clone = document.importNode(accountTpl.content, true);
           // Append the clone to the habit list container
@@ -31,12 +40,6 @@ $(document).ready(() => {
     },
   });
 
-  $('#child-btn').click(() => {
-    let childid = $('#child-btn').getAttribute("childid");
-    localStorage.setItem('childid', childid);
-    // Redirect to pet page
-    location.href('home.html');
-  });
 
   $('#createChild').click(() => {
     $.ajax({

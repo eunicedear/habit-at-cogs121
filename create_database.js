@@ -26,7 +26,9 @@ db.serialize(() => {
   // Create table for habits
   db.run("CREATE TABLE habits_to_child (habitid INTEGER PRIMARY KEY AUTOINCREMENT, childid INTEGER, title TEXT, description TEXT, due TEXT, status INTEGER, FOREIGN KEY(childid) REFERENCES children_to_user(childid))");
   // Create table for Accessories
-  db.run("CREATE TABLE accessories (accessoryid INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, points INTEGER)");
+  db.run("CREATE TABLE accessories-store (accessoryid INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, points INTEGER)");
+  // Create table for Owned Accessories
+  db.run("CREATE TABLE child-to-accessories (childid INTEGER, accessoryid INTEGER, FOREIGN KEY(childid) REFERENCES children-to-usre(childid), FOREIGN KEY(accessoryid) REFERENCES accessories-store(accessoryid))"); 
 
 
 
