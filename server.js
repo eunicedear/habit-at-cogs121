@@ -321,6 +321,24 @@ app.post('/pet-preview', (req, res) => {
   });
 });
 
+app.post('/childAccessories', (req, res) => {
+  db.all('SELECT * FROM child_to_accessories WHERE childid=$childid', {
+    $childid: req.body.childid
+  }, (err, data) => {
+    if(data.length > 0) {
+      console.log('Childs accessories found: ', data);
+      res.send(data);
+    } else {
+      console.log('Child has no accessories');
+      res.send({});
+    }
+  })
+});
+
+app.post('/updatePet', (req, res) => {
+  db.run();
+});
+
 
 app.listen(3000, () => {
   console.log('Server started at http://localhost:3000/');
