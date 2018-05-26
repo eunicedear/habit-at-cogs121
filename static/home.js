@@ -14,4 +14,6 @@ $(document).ready(() => {
       }
     },
   });
+
+  $('#log-modal').modal('show');
 });
