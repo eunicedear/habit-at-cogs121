@@ -54,7 +54,8 @@ $('#logout-btn').click(() => {
 
 window.addEventListener('load', function() {
   childId = localStorage.getItem('childid');
-  initApp()
+  initApp();
+  $('#log-modal').modal('show');
 });
 
 
