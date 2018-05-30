@@ -1,4 +1,4 @@
-var userId, database, childId;
+var userId, database, childId, habitId;
 var config = {
   apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",
   authDomain: "tycho-habit-at.firebaseapp.com",
@@ -11,16 +11,54 @@ var config = {
 firebase.initializeApp(config);
 console.log("Initializing Firebase");
 
+function getCurrentDate() {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = '0' + dd
+  }
+
+  if (mm < 10) {
+    mm = '0' + mm
+  }
+  today = yyyy + '-' + mm + '-' + dd;
+  return today;
+}
+
 function viewHome() {
   var key = "users/" + userId + "/children/" + childId;
 
   database.ref(key).once("value", (snapshot) => {
     const data = snapshot.val();
-    if(data.name && data.pet) {
+    if (data.name && data.pet) {
       console.log("You received some data", data);
-      $("#greeting").text("Hi, " + data.name +"!");
+      $("#pet-img").attr("src", data.pet);
+      $("#greeting").text("Hi, " + data.name + "!");
       $("#points").text(data.points + " Pts");
-      $("#level").text("Lvl " + data.level)
+      $("#level").text("Lvl " + data.level);
+      if (data.habits) {
+        console.log("Child has habits: ", data.habits);
+        database.ref(key + "/habits").once("value", (snapshot) => {
+          snapshot.forEach((habit) => {
+            habitId = habit.key;
+            var habitData = habit.val();
+            console.log("Child habit found: ", habitData);
+            console.log("Log", habitData.log);
+            var date = getCurrentDate();
+            if(habitData.log.hasOwnProperty(date)) {
+              console.log("data for today logged");
+            } else {
+              $("#habit-title").text(habitData.title);
+              $('#log-modal').modal('show');
+            }
+          });
+        });
+      } else {
+        console.log("Child has no habits");
+      }
     } else {
       console.log("No child data!");
       // $("body").html("");
@@ -52,10 +90,35 @@ $('#logout-btn').click(() => {
   firebase.auth().signOut();
 });
 
+
+
+$('#input-yes').click(() => {
+  var date = getCurrentDate();
+  console.log(date);
+
+    database.ref("users/" + userId + "/children/" + childId + "/habits/" + habitId + "/log/" + date).set(
+      true
+    ).then(() => {
+      console.log("Log Written:", date);
+      location.reload();
+    });
+});
+
+$('#input-no').click(() => {
+  var date = getCurrentDate();
+  console.log(date);
+
+    database.ref("users/" + userId + "/children/" + childId + "/habits/" + habitId + "/log/" + date).set(
+      false
+    ).then(() => {
+      console.log("Log Written:", date);
+      location.reload();
+    });
+});
+
 window.addEventListener('load', function() {
   childId = localStorage.getItem('childid');
   initApp();
-  $('#log-modal').modal('show');
 });
 
 
