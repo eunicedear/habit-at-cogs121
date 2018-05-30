@@ -1,3 +1,7 @@
+body {
+		overflow-x: hidden;
+}
+
 * {
 	font-family: 'Montserrat', sans-serif;
 }
@@ -17,10 +21,21 @@ p {
 	margin: 10px auto 10px;
 }
 
-.section {
+.section-head {
     margin: 24px;
 }
 
 .back-btn {
     border-radius: 50px;
+}
+
+.calendar {
+	margin: 0px;
+	overflow-x: auto;
+}
+
+#myChart {
+	height: 400px;
+	width: 500px;
+	overflow: auto;
 }

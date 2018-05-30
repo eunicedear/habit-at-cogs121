@@ -27,11 +27,17 @@
           </div>
             <div class="habit-list">
               <div class="section">
-                <h3 id="title"></h3>
-                <h5 id="date"></h5>
-                <p id="description">
-                  
-                </p>
+                <div class="section-head">
+                  <h3 id="title"></h3>
+                  <h5 id="date"></h5>
+                  <p id="description">
+
+                  </p>
+                </div>
+                <div class="calendar">
+                  <div id="myChart"></div>
+                </div>
+
               </div>
               <hr />
                 <h4>This is your progress:</h4>
@@ -100,5 +106,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <script src="habit_stats.js" type="text/javascript"></script>
+
+        <script src= "https://cdn.zingchart.com/zingchart.min.js"></script>
+		    <script> zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"];</script>
     </body>
 </html>
