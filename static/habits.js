@@ -78,7 +78,8 @@ function writeHabit(title, description, date, childid) {
   database.ref("users/" + userId + "/children/" + childId + "/habits").push({
     title: title,
     description: description,
-    date: date
+    date: date,
+    log: null
     // childid: childid
   }).then(() => {
     console.log("Habit Written:", name);

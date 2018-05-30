@@ -46,9 +46,9 @@ function viewHome() {
             habitId = habit.key;
             var habitData = habit.val();
             console.log("Child habit found: ", habitData);
-            console.log("Log", habitData.log);
             var date = getCurrentDate();
-            if(habitData.log.hasOwnProperty(date)) {
+            if(habitData.log && habitData.log.hasOwnProperty(date)) {
+              console.log("Log", habitData.log);
               console.log("data for today logged");
             } else {
               $("#habit-title").text(habitData.title);
