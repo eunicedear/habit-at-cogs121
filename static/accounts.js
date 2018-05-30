@@ -94,7 +94,9 @@ $('#createChild').click(() => {
 });
 
 $('#logout-btn').click(() => {
+  localStorage.clear();
   firebase.auth().signOut();
+
 });
 
 window.addEventListener('load', function() {
