@@ -12,41 +12,61 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<!-- Custom Styles -->
 	<link href="login_style.css" rel="stylesheet">
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",
+			authDomain: "tycho-habit-at.firebaseapp.com",
+			databaseURL: "https://tycho-habit-at.firebaseio.com",
+			projectId: "tycho-habit-at",
+			storageBucket: "tycho-habit-at.appspot.com",
+			messagingSenderId: "879811116990"
+		};
+		firebase.initializeApp(config);
+	</script>
+	<script src="https://cdn.firebase.com/libs/firebaseui/3.0.0/firebaseui.js"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.0.0/firebaseui.css" />
+	<script type="text/javascript">
+		// FirebaseUI config.
+		var uiConfig = {
+			signInSuccessUrl: 'accounts.html',
+			signInOptions: [
+				// Leave the lines as is for the providers you want to offer your users.
+				firebase.auth.EmailAuthProvider.PROVIDER_ID,
+				firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+				// firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+				// firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+				// firebase.auth.GithubAuthProvider.PROVIDER_ID,
+				firebase.auth.PhoneAuthProvider.PROVIDER_ID
+			],
+			// Terms of service url.
+			tosUrl: '<your-tos-url>'
+		};
+
+		// Initialize the FirebaseUI Widget using Firebase.
+		var ui = new firebaseui.auth.AuthUI(firebase.auth());
+		// The start method will wait until the DOM is loaded.
+		ui.start('#firebaseui-auth-container', uiConfig);
+	</script>
+
 </head>
 
 <body>
 
 	<h1>Habit-at</h1>
-	<div class="signup-form">
-		<form>
-			<input id="name" type="text" title="name" autocomplete="name" placeholder="Name" />
-			<input id="email" type="email" title="email" autocomplete="email" placeholder="Email" />
-			<input id="username" type="text" title="username" autocomplete="off" placeholder="Username" />
-			<input id="password" type="password" title="password" autocomplete="off" placeholder="Password" />
-			<br />
-			<button id="submitButton" type="submit" class="btn">Sign Up</button>
-		</form>
-		<form action="login.html">
-			<p>Already have an account?</p>
-			<button type="submit" class="btn">Login</button>
-		</form>
-	</div>
+	<div id="firebaseui-auth-container"></div>
 
 
 
 
 	<!-- JavaScript -->
-	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-	<script src="app.js" type="text/javascript"></script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 	<script src="signup.js"></script>
-
-	<script type="main.js"></script>
-	<script type="text/JavaScript">
-	</script>
 
 </body>
 

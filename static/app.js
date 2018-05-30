@@ -1,4 +1,5 @@
   // Initialize Firebase
+  console.log("running app.js");
   var config = {
     apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",
     authDomain: "tycho-habit-at.firebaseapp.com",
