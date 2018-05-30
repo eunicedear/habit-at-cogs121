@@ -34,7 +34,7 @@
 			<a href="closet.html" class="button">Closet</a>
 			<a href="habits.html" class="button">Habits</a>
 			<br><br>
-			<button type="button" class="btn" data-toggle="modal" data-target="#log-modal">Log my habits</button>
+			<button id="open-log" type="button" class="btn">Log my habits</button>
 		</div>
 		<div class="container stats">
 			<div id="level" class="circle">Lvl</div>
@@ -46,13 +46,13 @@
 	<div class="modal fade" id="log-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-			<div align="center" class="modal-body">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<div align="center" class="modal-body">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h5 class="modal-title">Did you complete<p id="habit-title" class="mb-0">Blank</p>habit today?</h5>
-				<br>
-				<!-- <form>
+					<h5 class="modal-title">Did you complete<p id="habit-title" class="mb-0">Blank</p>habit today?</h5>
+					<br>
+					<!-- <form>
 					<div class="form-group">
 						<label for="recipient-name" class="col-form-label">What habit do you want to make?</label>
 						<input type="text" class="form-control" id="habitName">
@@ -66,27 +66,40 @@
 						<input type="date" class="form-control" id="habitDate">
 					</div>
 				</form> -->
-				<button id="input-yes" type="button" class="btn btn-success log-btn">Yes</button>
-				<button id="input-no" type="button" class="btn btn-danger log-btn">No</button>
-				<br><br>
-				<p class="later" data-dismiss="modal" aria-label="Close">Ask me later</p>
+					<button id="input-yes" type="button" class="btn btn-success log-btn">Yes</button>
+					<button id="input-no" type="button" class="btn btn-danger log-btn">No</button>
+					<br><br>
+					<p class="later" data-dismiss="modal" aria-label="Close">Ask me later</p>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- JavaScript -->
-<script>
-function goBack() {
-	window.history.back();
-}
-</script>
+	<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div align="center" class="modal-body">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+					<h5 id="status" class="modal-title">You've logged all your activity for today!</h5>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-<script type="text/javascript" src="home.js"></script>
+	<!-- JavaScript -->
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<script type="text/javascript" src="home.js"></script>
 
 </body>
 

@@ -47,7 +47,7 @@ function viewHome() {
             var habitData = habit.val();
             console.log("Child habit found: ", habitData);
             var date = getCurrentDate();
-            if(habitData.log && habitData.log.hasOwnProperty(date)) {
+            if (habitData.log && habitData.log.hasOwnProperty(date)) {
               console.log("Log", habitData.log);
               console.log("data for today logged");
             } else {
@@ -90,30 +90,60 @@ $('#logout-btn').click(() => {
   firebase.auth().signOut();
 });
 
-
+$('#open-log').click(() => {
+  var key = "users/" + userId + "/children/" + childId;
+  database.ref(key).once("value", (snapshot) => {
+    const data = snapshot.val();
+    if (data.habits) {
+      console.log("Child has habits: ", data.habits);
+      database.ref(key + "/habits").once("value", (snapshot) => {
+        snapshot.forEach((habit) => {
+          habitId = habit.key;
+          var habitData = habit.val();
+          console.log("Child habit found: ", habitData);
+          var date = getCurrentDate();
+          if (habitData.log && habitData.log.hasOwnProperty(date)) {
+            console.log("Log", habitData.log);
+            console.log("data for today logged");
+            $("#status").text("You've logged all your activity for today!");
+            $('#info-modal').modal('show');
+          } else {
+            $("#habit-title").text(habitData.title);
+            $('#log-modal').modal('show');
+          }
+        });
+      });
+    } else {
+      console.log("Child has no habits");
+      $("#status").text("You don't have any habits to log, create a new one!");
+      $('#info-modal').modal('show');
+    
+    }
+  });
+});
 
 $('#input-yes').click(() => {
   var date = getCurrentDate();
   console.log(date);
 
-    database.ref("users/" + userId + "/children/" + childId + "/habits/" + habitId + "/log/" + date).set(
-      true
-    ).then(() => {
-      console.log("Log Written:", date);
-      location.reload();
-    });
+  database.ref("users/" + userId + "/children/" + childId + "/habits/" + habitId + "/log/" + date).set(
+    1
+  ).then(() => {
+    console.log("Log Written:", date);
+    location.reload();
+  });
 });
 
 $('#input-no').click(() => {
   var date = getCurrentDate();
   console.log(date);
 
-    database.ref("users/" + userId + "/children/" + childId + "/habits/" + habitId + "/log/" + date).set(
-      false
-    ).then(() => {
-      console.log("Log Written:", date);
-      location.reload();
-    });
+  database.ref("users/" + userId + "/children/" + childId + "/habits/" + habitId + "/log/" + date).set(
+    0
+  ).then(() => {
+    console.log("Log Written:", date);
+    location.reload();
+  });
 });
 
 window.addEventListener('load', function() {
