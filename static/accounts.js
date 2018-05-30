@@ -88,7 +88,8 @@ function writeChild(name, pet) {
 
 $('#createChild').click(() => {
   const name = $("#input-name").val();
-  const pet = $("#input-pet").val();
+  const pet = "assets/pet_" + $("#input-pet").val() + ".png";
+  console.log("Pet URL: ", pet);
   writeChild(name, pet);
 });
 
