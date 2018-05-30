@@ -22,12 +22,13 @@ initApp = function() {
       var uid = user.uid;
       var phoneNumber = user.phoneNumber;
       var providerData = user.providerData;
+      // localStorage.setItem("uid", uid);
       console.log("User is signed in.");
       // location.href="accounts.html";
     } else {
       // User is signed out.
-      console.log("No user signed in.");
-      // location.href = "login.html";
+      console.log("User is signed out.");
+      location.href = "login.html";
     }
   }, function(error) {
     console.log(error);

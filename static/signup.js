@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  const database = firebase.database();
+  // const database = firebase.database();
 
   $('#submitButton').click(() => {
     console.log('Submit Button Clicked');

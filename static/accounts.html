@@ -1,141 +1,124 @@
 <!DOCTYPE html>
 
 <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <head>
-        <title>Accounts</title>
+<head>
+  <title>Accounts</title>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link href="accounts.css" rel="stylesheet">
+  <!-- Font Awesome-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script> -->
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+  <!-- Add additional services you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+  <!-- <script src="start_firebase.js"></script> -->
+</head>
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <!-- Custom Styles -->
-        <link href="accounts.css" rel="stylesheet">
-
-        <!-- Font Awesome-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-      	<script>
-      	  // Initialize Firebase
-      	  var config = {
-      	    apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",
-      	    authDomain: "tycho-habit-at.firebaseapp.com",
-      	    databaseURL: "https://tycho-habit-at.firebaseio.com",
-      	    projectId: "tycho-habit-at",
-      	    storageBucket: "tycho-habit-at.appspot.com",
-      	    messagingSenderId: "879811116990"
-      	  };
-      	  firebase.initializeApp(config);
-      	</script>
-    </head>
-
-    <body>
-      <script type="text/javascript">
-        if (localStorage.getItem('userid') === null) {
-          // User not logged in, redirect to login
-          location.href = 'login.html';
-        } else {
-          console.log("User is logged in!");
-        }
-      </script>
-        <div class="container-fluid">
-            <div class="account-list">
-
-                <h3>Your Accounts</h3>
-
-                <!-- <a class="btn btn-light child-btn" href="habit_stats.html" role="button">
+<body>
+  <div class="container-fluid">
+    <div class="account-list">
+      <h3>Your Accounts</h3>
+      <!-- <a class="btn btn-light child-btn" href="habit_stats.html" role="button">
                     <h5>Sleep earlier everyday</h5>by 08/12/18</a><br>
                 <a class="btn btn-light child-btn" href="habit_stats.html" role="button">
                     <h5>Read more every week</h5>by 01/23/19</a><br>
                 <a class="btn btn-light child-btn" href="habit_stats.html" role="button">
                     <h5>Eat more vegetables</h5>Repeats weekly</a><br> -->
-            </div>
+    </div>
 
-            <!-- Button trigger modal -->
-            <!--<button type="button" class="btn btn-outline-secondary lock-btn" data-toggle="modal" data-target="#lock-modal">
+    <!-- Button trigger modal -->
+    <!--<button type="button" class="btn btn-outline-secondary lock-btn" data-toggle="modal" data-target="#lock-modal">
                 Lock
             </button>-->
 
-            <button type="button" class="btn btn-outline-secondary logout-btn" id="logout-btn">
+    <button type="button" class="btn btn-outline-secondary logout-btn" id="logout-btn">
                 Logout
             </button>
 
-            <button type="button" class="btn btn-secondary add-btn" data-toggle="modal" data-target="#add-modal">
+    <button type="button" class="btn btn-secondary add-btn" data-toggle="modal" data-target="#add-modal">
                 <i class="fas fa-plus fa-lg"></i>
             </button>
 
-            <!-- Lock Modal -->
-            <div class="modal fade" id="lock-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Please enter your pin:</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <!-- Lock Modal -->
+    <div class="modal fade" id="lock-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Please enter your pin:</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add Modal -->
-            <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Add a child</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="input-name" class="col-form-label">Child's Name</label>
-                                    <input type="text" class="form-control" id="input-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="input-pet" class="col-form-label">Choose a pet</label>
-                                    <input type="text" class="form-control" id="input-pet">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button id="createChild" type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <template class="accountTemplate">
+    <!-- Add Modal -->
+    <div class="modal fade" id="add-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Add a child</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="input-name" class="col-form-label">Child's Name</label>
+                <input type="text" class="form-control" id="input-name">
+              </div>
+              <div class="form-group">
+                <label for="input-pet" class="col-form-label">Choose a pet</label>
+                <input type="text" class="form-control" id="input-pet">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button id="createChild" type="button" class="btn btn-primary" data-dismiss="modal">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <template class="accountTemplate">
           <a class="child-btn btn btn-light" childid="0" role="button" onclick="handleChildClick(this)">
             <h5>Change this</h5>
         </a>
           <br>
         </template>
 
-        <!-- JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-        <script src="accounts.js"></script>
-    </body>
+  <!-- JavaScript -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <script defer src="accounts.js"></script>
+</body>
+
 </html>
