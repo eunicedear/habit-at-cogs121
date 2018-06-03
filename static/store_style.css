@@ -18,6 +18,11 @@ p {
 	padding: 10px;
 }
 
+.back-btn {
+    position: absolute;
+    left: 10%;
+}
+
 .pet-img {
 	display: block;
 	margin: auto;
