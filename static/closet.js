@@ -35,7 +35,18 @@ function updatePetImage(accessoryid) {
   //     $('#pet-img').attr('src', "assets/accessories_on/" + data[0].dogUrl);
   //   }
   // });
-}
+  var key = "accessories/" + accessoryid;
+
+  database.ref(key).once("value", (snapshot) => {
+    const data = snapshot.val();
+    if (data.accessoryid) {
+      console.log("Data received, url: ", data);
+      $("#pet-img").attr("src", data.accessory.dogURL);
+    } else {
+      console.log("Child has no accessories");
+    }
+  });
+};
 
 function initApp() {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -56,3 +67,7 @@ function initApp() {
     console.log(error);
   });
 };
+
+window.addEventListener('load', function() {
+  initApp();
+});
