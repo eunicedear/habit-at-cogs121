@@ -35,18 +35,7 @@ function updatePetImage(accessoryid) {
   //     $('#pet-img').attr('src', "assets/accessories_on/" + data[0].dogUrl);
   //   }
   // });
-  var key = "accessories/" + accessoryid;
-
-  database.ref(key).once("value", (snapshot) => {
-    const data = snapshot.val();
-    if (data.accessoryid) {
-      console.log("Data received, url: ", data);
-      $("#pet-img").attr("src", data.accessory.dogURL);
-    } else {
-      console.log("Child has no accessories");
-    }
-  });
-};
+}
 
 function initApp() {
   firebase.auth().onAuthStateChanged(function(user) {
@@ -57,7 +46,7 @@ function initApp() {
       childId = localStorage.getItem("childid");
       console.log("User is signed in.", userId);
       console.log("Current child: ", childId)
-      viewHome();
+      // viewHome();
     } else {
       // User is signed out.
       console.log("User is signed out.");
@@ -68,6 +57,7 @@ function initApp() {
   });
 };
 
+
 window.addEventListener('load', function() {
-  initApp();
+  initApp()
 });
