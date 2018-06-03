@@ -35,7 +35,35 @@ function updatePetImage(accessoryid) {
   //     $('#pet-img').attr('src', "assets/accessories_on/" + data[0].dogUrl);
   //   }
   // });
-}
+  var key = "accessories/" + accessoryid;
+  // console.log(key)
+  database.ref(key).once("value", (snapshot) => {
+    const data = snapshot.val();
+    if (data.dogURL) {
+      console.log("Data received, url: ", data.dogURL);
+      $("#pet-img").attr("src", "assets/accessories_on/" + data.dogURL);
+    } else {
+      console.log("Child has no accessories");
+    }
+  });
+};
+
+$("#save").click(() => {
+  var key = "accessories/" + localStorage.getItem("accessoryid");
+  var pet = "users/" + userId + "/children/" + childId + "/pet";
+
+  database.ref(key).once("value", (snapshot) => {
+    const data = snapshot.val();
+    if (data.dogURL) {
+      database.ref(pet).set("assets/accessories_on/" + data.dogURL).then(() => {
+        console.log("Saved accessory: ", data);
+        $("#pet-img").attr("src", "assets/accessories_on/" + data.dogURL);
+      });
+    } else {
+      console.log("Child has no accessories to save");
+    }
+  });
+});
 
 function initApp() {
   firebase.auth().onAuthStateChanged(function(user) {
