@@ -50,7 +50,20 @@
 		</div>
 
 		<div class="container btn">
-			<a id="save" class="button">Save Look</a>
+			<button id="save" type="button" class="button" data-toggle="modal" data-target="#confirm-modal">Save look</button>
+		</div>
+
+		<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div align="center" class="modal-body">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+						<h5 id="status" class="modal-title">Your look has been saved!</h5>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- <div class="container-fluid">

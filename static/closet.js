@@ -57,7 +57,6 @@ $("#save").click(() => {
     if (data.dogURL) {
       database.ref(pet).set("assets/accessories_on/" + data.dogURL).then(() => {
         console.log("Saved accessory: ", data);
-        $("#pet-img").attr("src", "assets/accessories_on/" + data.dogURL);
       });
     } else {
       console.log("Child has no accessories to save");
