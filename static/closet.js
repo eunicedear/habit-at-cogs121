@@ -1,3 +1,8 @@
+// Displays owned accessories and the whole closet by parsing through the
+// accessories database and adding it to the list. Displays preview of pet
+// wearing selected accessory by grabbing the accessory's ID from the database
+// and updating the pet image that is shown.
+
 var userId, database, childId, habitId;
 var config = {
   apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",

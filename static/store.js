@@ -1,3 +1,8 @@
+// Grabs child's data from database for number of points available to spend,
+// accessories not purchased yet to display in the store, and update database
+// when selected item is purchased. When a user clicks on an accessory to buy,
+// their number of points go down and it is added to their closet.
+
 var userId, database, childId, points;
 var config = {
   apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",

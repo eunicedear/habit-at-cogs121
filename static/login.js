@@ -1,3 +1,7 @@
+// Accesses Firebase to allow user login and account authentication. Grabs
+// data about their name, email, if their email was verified, their photo,
+// user ID, and phone number.
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",

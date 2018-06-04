@@ -1,3 +1,7 @@
+// Displays the list of habits by fetching the child's habit data from database.
+// Updates habit database if user creates new habit and appends it to the
+// list of habits.
+
 var userId, database, childId;
 var config = {
   apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",

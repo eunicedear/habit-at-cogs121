@@ -1,3 +1,6 @@
+/* Stylesheet for the login page. This file mainly formats the input forms
+and the buttons that are displayed. */
+
 * {
 	font-family: 'Montserrat', sans-serif;
 }
@@ -49,5 +52,5 @@ input {
 }
 
 .g-signin2 {
-   margin-left:  
+   margin-left:
 }

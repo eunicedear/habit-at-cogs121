@@ -1,3 +1,6 @@
+// Accesses Firebase to allow user to signup using email, Google account,
+// or phone number.
+
 $(document).ready(() => {
   // const database = firebase.database();
 

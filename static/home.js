@@ -1,3 +1,9 @@
+// Fetches child's account data from database to display child's pet, number
+// of points, current level, and habits to log. A window pops up that asks the
+// user to log their habit by clicking yes or no. Yes (or no) will update the
+//database so that they can view their progress on the data visualization
+// calendar. Logged habits are updated.
+
 var userId, database, childId, habitId;
 var config = {
   apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",

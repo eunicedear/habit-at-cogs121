@@ -1,3 +1,9 @@
+// Displays user's children's accounts by saving the child's and user's ID to
+// localStorage. Saves it to the database and appends it to the habit list by
+// arsing the data into the template. Allows user to add an account for child.
+// Allows logout.
+
+
 var userId, database;
 var config = {
   apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",

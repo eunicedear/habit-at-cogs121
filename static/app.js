@@ -1,3 +1,5 @@
+// This file initializes Firebase.
+
   // Initialize Firebase
   console.log("running app.js");
   var config = {

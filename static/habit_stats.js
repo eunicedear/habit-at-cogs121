@@ -1,3 +1,9 @@
+// Displays relevant habit information by grabbing the selected habit's data
+// from the database. Displays information such as past logs, progress,
+// setbacks, etc. Also displays the data visualization (calendar) by calling
+// ZingChart's calendar API and making necessary changes to the database. Allows
+// user to make changes to habit data.
+
 var userId, database, childId, habitId;
 var config = {
   apiKey: "AIzaSyANhXaRoHHK8S06Y54SU_lqwmzDMBpiGfI",
