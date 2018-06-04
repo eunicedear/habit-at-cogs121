@@ -1,3 +1,6 @@
+// Uses SQL Queries to initialize the database for the store by inserting
+// accessory data into the database.
+
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database('habits.db');
 

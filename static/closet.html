@@ -1,3 +1,8 @@
+<!-- This file displays the frontend for the closet page. It sets up the avatar
+that is displayed and the various types of accessories that it has. When
+each accessory is clicked, the avatar will update and you can save that
+look. You can also direct to the store page. -->
+
 <!DOCTYPE html>
 
 <html>
@@ -12,6 +17,11 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<!-- Custom Styles -->
 		<link href="closet_style.css" rel="stylesheet">
+		<!-- Firebase App is always required and must be first -->
+		<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+		<!-- Add additional services you want to use -->
+		<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
 	</head>
 
 	<body>
@@ -26,13 +36,13 @@
 		</div>
 
 		<div class="wrapper">
-			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="1">
+			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="0">
 				<img class="item-img" src="assets/accessories/boots-yellow.png"  >
 			</div>
-			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="2">
+			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="1">
 				<img class="item-img" src="assets/accessories/bow-tie.png">
 			</div>
-			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="13">
+			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="12">
 				<img class="item-img" src="assets/accessories/shirt-pink.png">
 			</div>
 			<div class="item-placeholder"></div>
@@ -45,7 +55,20 @@
 		</div>
 
 		<div class="container btn">
-			<a href="home.html" class="button">Save Look</a>
+			<button id="save" type="button" class="button" data-toggle="modal" data-target="#confirm-modal">Save look</button>
+		</div>
+
+		<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div align="center" class="modal-body">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+						<h5 id="status" class="modal-title">Your look has been saved!</h5>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<!-- <div class="container-fluid">
