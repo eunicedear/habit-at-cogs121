@@ -21,11 +21,16 @@
 
 	<body>
 
-		<nav class="navbar navbar-expand-lg">
-			<span class="navbar-brand navbar-header"><i class="fas fa-angle-left back-btn" onclick="goBack()"></i>Habit-at</span>
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:  #E39774">
+			<span class="navbar-brand navbar-header">
+				<a href="closet.html" class="text-white">
+					<i class="fas fa-angle-left back-btn"></i>
+					</a>
+					Habit-at
+				</span>
 		</nav>
 
-		<div class="container pet-img">
+		<div class="container pet-img pt-3">
 			<h4>Buy Accessories:</h4>
 		</div>
 
@@ -35,55 +40,32 @@
 		</div>
 
 		<div class="wrapper">
-			<!-- <div class="item-placeholder">
-				<img src="assets/accessories/cap-yellow.png" class="items toggleSelected" accessoryid="0" onclick="selectedAccessory(this)">
-				<p>5 pts</p>
-			</div>
-			<div class="item-placeholder">
-				<img src="assets/accessories/carnival-mask.png" class="items" onclick="toPurchase(4)">
-				<p>4 pts</p>
-			</div>
-			<div class="item-placeholder">
-				<img src="assets/accessories/earmuffs.png" class="items" onclick="toPurchase(7)">
-				<p>7 pts</p>
-			</div>
-			<div class="item-placeholder">
-				<img src="assets/accessories/headband-bunny.png" class="items" onclick="toPurchase(7)">
-				<p>7 pts</p>
-			</div>
-			<div class="item-placeholder">
-				<img src="assets/accessories/necklace.png" class="items" onclick="toPurchase(3)">
-				<p>3 pts</p>
-			</div>
-			<div class="item-placeholder">
-				<img src="assets/accessories/sunglasses-red.png" class="items" onclick="toPurchase(3)">
-				<p>3 pts</p>
-			</div>
-			<div class="item-placeholder">
-				<img src="assets/accessories/polo-shirt.png" class="items" onclick="toPurchase(7)">
-				<p>7 pts</p>
-			</div>
-			<div class="item-placeholder">
-				<img src="assets/accessories/red-winter-hat.png" class="items" onclick="toPurchase(5)">
-				<p>5 pts</p>
-			</div>
-			<div class="item-placeholder">
-				<img src="assets/accessories/redtie.png" class="items" onclick="toPurchase(3)">
-				<p>3 pts</p>
-			</div> -->
 		</div>
 
 		<div class="container btn fix-bottom">
-			<a href="closet.html" class="button">Purchase</a>
+			<a id="purchase-btn" class="button">Buy</a>
 		</div>
 
 		<!-- Template -->
 		<template id="item-template">
 			<div class="item-placeholder">
-				<img id="accessory-img" src="assets/accessories/cap-yellow.png" class="items toggleSelected" accessoryid="0" onclick="selectedAccessory(this)">
-				<p>5 pts</p>
+				<img id="item-image" src="assets/accessories/cap-yellow.png" class="items toggleSelected item-image" accessoryid="0" onclick="selectedAccessory(this)">
+				<p id="item-points">5 pts</p>
 			</div>
 		</template>
+
+		<div class="modal fade" id="warning-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div align="center" class="modal-body">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+						<h5 id="status" class="modal-title">You don't have enough points to purchase this yet!</h5>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
 	<!-- JavaScript -->
@@ -118,14 +100,6 @@
 			} else {
 				alert("Not enough points!");
 			}
-
-			// Update current points
-			$(document).ready(function() {
-				$("#ptsTotal").text(points + " pts");
-
-
-
-			});
 
 			// Toggle selected accessory
 			// $(".toggleSelected").click(function() {

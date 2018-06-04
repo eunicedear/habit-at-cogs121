@@ -1,110 +1,119 @@
 * {
-	font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h4 {
-	text-align: center;
-	/* padding: 10px; */
+  text-align: center;
+  /* padding: 10px; */
 }
 
 p {
-	text-align: center;
-	padding: 5px;
+  text-align: center;
+  padding: 5px;
 }
 
 .navbar-header {
-	text-align: center;
-	width: 100%;
-	padding: 10px;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
 }
 
 .back-btn {
-    position: absolute;
-    left: 10%;
+  position: absolute;
+  left: 8%;
+  font-size: 28px;
 }
 
 .pet-img {
-	display: block;
-	margin: auto;
-	/* padding: 10px; */
-	text-align: center;
+  display: block;
+  margin: auto;
+  /* padding: 10px; */
+  text-align: center;
 }
 
-
 .circle {
-	/* margin: 20px; */
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	/*background-color: lightgray;*/
-	border-style: solid;
-	border-width: 2px;
-	border-color: lightgray;
-	display: inline-block;
-	text-align: center;
-	line-height: 80px;
+  /* margin: 20px; */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  /*background-color: lightgray;*/
+  border-style: solid;
+  border-width: 2px;
+  border-color: lightgray;
+  display: inline-block;
+  text-align: center;
+  line-height: 80px;
 }
 
 .wrapper {
-	/*text-align: center;*/
-	justify-content: center;
-	padding: 30px;
-	margin: 0 auto;
-	width: 100%
-	display: inline-block;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+  /*text-align: center;*/
+  justify-content: center;
+  padding: 30px;
+  margin: 0 auto;
+  width: 100% display: inline-block;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
 .item-placeholder {
-	justify-content: center;
-	/* background-color: lightgray; */
-	width: 50px;
-	height: 80px;
-	margin: 0 auto;
-	/* margin-bottom: 5px; */
-	display: inline-block;
+  justify-content: center;
+  /* background-color: lightgray; */
+  width: 50px;
+  height: 80px;
+  margin: 0 auto;
+  /* margin-bottom: 5px; */
+  display: inline-block;
 }
 
 .items {
-		justify-content: center;
-		/* background-color: lightgray; */
-		width: 50px;
-		height: 50px;
-		margin: 0 auto;
-		display: inline-block;
+  justify-content: center;
+  /* background-color: lightgray; */
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  display: inline-block;
 }
 
+.items:hover {
+  padding: 8px;
+  background-color: lightgreen;
+  border-radius: 50%;
+}
 
 a {
-	text-decoration: none;
-	color: initial;
-	background-color: lightgray;
+  text-decoration: none;
+  color: initial;
+  background-color: lightgray;
 }
 
 .btn {
-	border-radius: 50px;
-	display: inline-block;
-	padding-top: 10px;
-	/* padding-bottom: 20px; */
+  border-radius: 50px;
+  display: inline-block;
+  padding-top: 10px;
+  /* padding-bottom: 20px; */
 }
 
 .button {
-	text-align: center;
-	border-radius: 50px;
-	/*margin: auto;*/
-	display: inline-block;
-	padding: 0.3em 2em;
-	margin: 0px 20px;
+  text-align: center;
+  border-radius: 50px;
+  /*margin: auto;*/
+  display: inline-block;
+  padding: 0.3em 2em;
+  margin: 0px 20px;
 }
 
 .fix-bottom {
-	position: absolute;
-	bottom: 20px;
+  position: absolute;
+  bottom: 20px;
 }
 
 .toggleSelected.clicked {
-	background-color: lightgray;
+  background-color: lightgray;
+}
+
+.wrapper {
+  max-height: 340px;
+  overflow-y: scroll;
 }

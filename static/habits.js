@@ -72,7 +72,7 @@ function handleHabitClick(element) {
   console.log('Habit ', habitid, ' clicked');
   localStorage.setItem('habitid', habitid);
   location.href = 'habit_stats.html';
-}
+};
 
 function writeHabit(title, description, date, childid) {
   database.ref("users/" + userId + "/children/" + childId + "/habits").push({

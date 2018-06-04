@@ -26,36 +26,30 @@ look. You can also direct to the store page. -->
 
 	<body>
 
-		<nav class="navbar navbar-expand-lg">
-			<span class="navbar-brand navbar-header"><i class="fas fa-angle-left back-btn" onclick="goBack()"></i>Habit-at</span>
+
+		<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:  #E39774">
+			<span class="navbar-brand navbar-header">
+				<a href="home.html" class="text-white">
+					<i class="fas fa-angle-left back-btn"></i>
+					</a>
+					Habit-at
+				</span>
 		</nav>
 
 		<div class="container pet-img">
 			<h4>Dress Spot up!</h4>
 			<img id="pet-img" src="assets/pet_dog.png">
 		</div>
-
-		<div class="wrapper">
-			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="0">
-				<img class="item-img" src="assets/accessories/boots-yellow.png"  >
-			</div>
-			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="1">
-				<img class="item-img" src="assets/accessories/bow-tie.png">
-			</div>
-			<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="12">
-				<img class="item-img" src="assets/accessories/shirt-pink.png">
-			</div>
-			<div class="item-placeholder"></div>
-			<div class="item-placeholder"></div>
-			<div class="item-placeholder"></div>
+		<div id="status-accessories" class="pt-4">
 		</div>
+		<div class="wrapper"></div>
 
 		<div class="container btn">
 			<a href="store.html" class="button">Buy more accessories</a>
 		</div>
 
 		<div class="container btn">
-			<button id="save" type="button" class="button" data-toggle="modal" data-target="#confirm-modal">Save look</button>
+			<a id="save" class="button" data-toggle="modal" data-target="#confirm-modal">Save look</a>
 		</div>
 
 		<div class="modal fade" id="confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
@@ -84,7 +78,11 @@ look. You can also direct to the store page. -->
 				</div>
 			</div>
 		</div> -->
-
+<template id="item-template">
+	<div class="item-placeholder items" onclick="handleItemClick(this)" accessoryid="0">
+		<img id="item-image" class="item-img" src="assets/accessories/boots-yellow.png"  >
+	</div>
+</template>
 
 	<!-- JavaScript -->
 	<script>

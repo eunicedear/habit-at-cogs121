@@ -1,4 +1,4 @@
-/* Stylesheet for the home page. This file mainly customizes the buttons and the 
+/* Stylesheet for the home page. This file mainly customizes the buttons and the
 avatar. */
 
 * {
@@ -61,7 +61,8 @@ a {
 
 .back-btn {
     position: absolute;
-    left: 10%;
+    left: 8%;
+		font-size: 28px;
 }
 
 .log-btn {
@@ -71,4 +72,8 @@ a {
 
 .later {
 	color: #999;
+}
+
+nav {
+	background-color: #E39774;
 }

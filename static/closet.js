@@ -22,19 +22,45 @@ function handleItemClick(element) {
   updatePetImage(accessoryid);
 }
 
+function displayCloset() {
+  database.ref('users/' + userId + '/children/' + childId + '/accessories').orderByKey().once('value', snapshot => {
+    const accessories = snapshot.val();
+    console.log(accessories);
+    if (accessories) {
+      console.log('displayCloset()');
+      snapshot.forEach((itemSnapshot) => {
+        console.log('item', itemSnapshot);
+        var data = itemSnapshot.val();
+        console.log('item data', data);
+        var key = itemSnapshot.key;
+        console.log('key', key);
+        var accessoryid = data.accessoryid;
+        console.log('accessoryid', accessoryid);
+        var template = document.querySelector('#item-template');
+        console.log('template', template);
+        var placeholder = template.content.querySelector('.item-placeholder');
+        var image = template.content.querySelector('#item-image');
+        console.log('item-image', image);
+        var url;
+
+        database.ref('accessories/'+accessoryid+'/itemURL').once('value', snapshot => {
+          url = 'assets/accessories/'+snapshot.val();
+          console.log('imageURL',url);
+        }).then(()=> {
+          image.setAttribute('src', url);
+          placeholder.setAttribute('accessoryid', accessoryid);
+          var clone = document.importNode(template.content, true);
+          $('.wrapper').append(clone);
+        });
+      });
+    } else {
+      $('#status-accessories').html("<p class='text-center'>No accessories,<br/> buy some from the store!</p>")
+    }
+  })
+}
+
 // Matches with items with attribute -- onclick="handleItemClick(this)"
 function updatePetImage(accessoryid) {
-  // $.ajax({
-  //   url: 'pet-preview',
-  //   type: 'POST',
-  //   data: {
-  //     accessoryid: accessoryid
-  //   },
-  //   success: (data) => {
-  //     console.log('Data received, url: ', data);
-  //     $('#pet-img').attr('src', "assets/accessories_on/" + data[0].dogUrl);
-  //   }
-  // });
   var key = "accessories/" + accessoryid;
   // console.log(key)
   database.ref(key).once("value", (snapshot) => {
@@ -57,6 +83,7 @@ $("#save").click(() => {
     if (data.dogURL) {
       database.ref(pet).set("assets/accessories_on/" + data.dogURL).then(() => {
         console.log("Saved accessory: ", data);
+        location.href = "home.html";
       });
     } else {
       console.log("Child has no accessories to save");
@@ -73,7 +100,7 @@ function initApp() {
       childId = localStorage.getItem("childid");
       console.log("User is signed in.", userId);
       console.log("Current child: ", childId)
-      // viewHome();
+      displayCloset();
     } else {
       // User is signed out.
       console.log("User is signed out.");

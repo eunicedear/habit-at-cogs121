@@ -16,6 +16,12 @@ h3 {
 	font-family: 'Montserrat';
 }
 
+.navbar-header {
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+}
+
 p {
 	margin: 10px auto 10px;
 }
@@ -26,6 +32,8 @@ p {
     padding: 15px;
     width: 80%;
     text-align: center;
+		color: white;
+		background-color:
 }
 
 .logout-btn {
@@ -40,9 +48,18 @@ p {
 
 .add-btn {
     position: absolute;
-    right: 14%;
+    right: 10%;
     bottom: 5%;
     border-radius: 50%;
     height: 70px;
     width: 70px;
+		/* background-color: #69CEEC; */
+		border: none;
+}
+
+.back-btn {
+    position: absolute;
+    left: 16px;
+		margin: 0;
+		top: 16px;
 }

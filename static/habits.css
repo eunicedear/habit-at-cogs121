@@ -16,6 +16,12 @@ h3 {
 	font-family: 'Montserrat';
 }
 
+.navbar-header {
+	text-align: center;
+	width: 100%;
+	padding: 10px;
+}
+
 p {
 	margin: 10px auto 10px;
 }
@@ -48,6 +54,6 @@ p {
 
 .back-btn {
     position: absolute;
-    left: 10%;
-
+    left: 8%;
+		font-size: 28px;
 }

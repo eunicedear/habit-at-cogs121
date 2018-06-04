@@ -10,11 +10,46 @@ var config = {
 
 firebase.initializeApp(config);
 
+function purchaseItem(id, cost){
+  console.log('Users current points:', points);
+  if( points >= cost ) {
+    console.log("User has enough points to purchase!");
+    points = points - cost;
+    database.ref('users/'+userid+'/children/'+childid+'/points').set(points).then(() => {
+      console.log("Updated user points in database: ", points);
+    });
+    database.ref('users/'+userid+'/children/'+childid+'/accessories').push(
+      {
+        'accessoryid': id
+      }
+    ).then(() => {
+      console.log("Accessory Written to child:", name);
+      // location.reload();
+    });
+  } else {
+    console.log("User doesn't have enough points!");
+    alert("You don't have enough points to buy this yet");
+  }
+
+}
+
+$('#purchase-btn').click(()=> {
+  console.log('Purchase button clicked!');
+  console.log('Attempting to purchase item: ');
+  var accessoryid = localStorage.getItem('accessoryid');
+  console.log('accessoryid', accessoryid);
+  var accessoryPoints = localStorage.getItem('accessoryPoints');
+  console.log('accessoryPoints', accessoryPoints);
+  purchaseItem(accessoryid, accessoryPoints);
+});
+
 function selectedAccessory(element) {
   console.log('element ', element);
   var accessoryid = element.getAttribute("accessoryid");
   console.log('accessory ', accessoryid, ' clicked');
+  var accessoryPoints = element.getAttribute('accessoryPoints');
   localStorage.setItem('accessoryid', accessoryid);
+  localStorage.setItem('accessoryPoints', accessoryPoints);
 }
 
 function getPoints(userid, childid) {
@@ -36,23 +71,35 @@ function displayStore() {
     if (accessories) {
       console.log('displayStore()');
       snapshot.forEach((itemSnapshot) => {
-        console.log('item', itemSnapshot);
-        
+        // console.log('item', itemSnapshot);
+        var data = itemSnapshot.val();
+        // console.log('item data', data);
+        var key = itemSnapshot.key;
+        // console.log('key', key);
+        var url = 'assets/accessories/'+data.itemURL;
+        // console.log('url', url);
+        var itemPoints = data.points;
+        // console.log('points', points);
 
-        // var key = element.key;
-        // var accessoryid = element.val();
-        // var accessoryurl = database.ref('accessories/' + key + '/itemURL');
-        // console.log('accessoryid = ' + accessoryid);
-        // console.log('accessoryurl = ' + accessoryurl);
-        //
-        // var selectedTemplate = $('#item-placeholder');
-        // console.log('selectedTemplate ' + selectedTemplate.text);
-        // var selectedImage = $("#accessory-img");
-        // console.log('selectedImage ' + selectedImage.html);
-        // selectedImage.attr("src", 'assets/accessories/' + accessoryurl);
-        // var wrapper = $('.wrapper');
-        //
-        // selectedImage.clone().appendTo(wrapper);
+        var template = document.querySelector('#item-template');
+        // console.log('template', template);
+
+        var templatePoints = template.content.querySelector('#item-points');
+        // console.log('points', templatePoints);
+
+        templatePoints.textContent = itemPoints + " pts";
+        // console.log('points', templatePoints);
+
+        var image = template.content.querySelector('#item-image');
+        // console.log('item-image', image);
+
+        image.setAttribute('src', url);
+        image.setAttribute('accessoryid', key);
+        image.setAttribute('accessoryPoints', itemPoints);
+
+        var clone = document.importNode(template.content, true);
+        $('.wrapper').append(clone);
+
       });
     }
   })
@@ -83,7 +130,6 @@ function initApp() {
 
 window.addEventListener('load', function() {
   initApp();
-
   console.log('points = ' + points);
 });
 
@@ -101,18 +147,6 @@ $(document).ready(() => {
   // getPoints(userid, childid);
   // console.log('points = ' + points);
 
-  // upon clicked accessory, save id to local storage
-  // $('.items').click(() => {
-  //   var accessoryid = this.getAttribute("accessoryid");
-  //   localStorage.setItem('accessoryid', accessoryid);
-  //
-  //   // $.ajax({
-  //   //   url: 'toPurchase',
-  //   //   type: 'POST',
-  //   //   data: {
-  //   //
-  //   //   }
-  //   // })
-  // })
+
 
 });
