@@ -1,3 +1,6 @@
+/* Stylesheet for the habits page. This file mainly customizes the buttons
+such as the actual habit button, lock button, add button, and back button */
+
 * {
 	font-family: 'Montserrat', sans-serif;
 }
@@ -46,5 +49,5 @@ p {
 .back-btn {
     position: absolute;
     left: 10%;
-    
+
 }

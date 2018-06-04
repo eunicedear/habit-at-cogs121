@@ -1,3 +1,6 @@
+/* Stylesheet for the habit stat's page. The main thing this file does is 
+customize the calendar (the data visualization). */
+
 body {
 		overflow-x: hidden;
 }
