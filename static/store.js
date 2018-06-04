@@ -29,7 +29,7 @@ function purchaseItem(id, cost){
       }
     ).then(() => {
       console.log("Accessory Written to child:", name);
-      // location.reload();
+      location.href="closet.html";
     });
   } else {
     console.log("User doesn't have enough points!");
