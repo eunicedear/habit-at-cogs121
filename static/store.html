@@ -12,6 +12,11 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<!-- Custom Styles -->
 		<link href="store_style.css" rel="stylesheet">
+		<!-- Firebase App is always required and must be first -->
+		<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+		<!-- Add additional services you want to use -->
+		<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
 	</head>
 
 	<body>
@@ -24,15 +29,14 @@
 			<h4>Buy Accessories:</h4>
 		</div>
 
+		<!-- Display available points -->
 		<div class="container btn">
-			<!-- <a href="store.html" class="button">Buy more accessories</a> -->
-
-			<div class="circle" id="ptsTotal">30 pts</div>
+			<div class="circle" id="ptsTotal"></div>
 		</div>
 
 		<div class="wrapper">
-			<div class="item-placeholder">
-				<img src="assets/accessories/cap-yellow.png" class="items toggleSelected" onclick="toPurchase(5)">
+			<!-- <div class="item-placeholder">
+				<img src="assets/accessories/cap-yellow.png" class="items toggleSelected" accessoryid="0" onclick="selectedAccessory(this)">
 				<p>5 pts</p>
 			</div>
 			<div class="item-placeholder">
@@ -66,13 +70,20 @@
 			<div class="item-placeholder">
 				<img src="assets/accessories/redtie.png" class="items" onclick="toPurchase(3)">
 				<p>3 pts</p>
-			</div>
+			</div> -->
 		</div>
 
 		<div class="container btn fix-bottom">
 			<a href="closet.html" class="button">Purchase</a>
 		</div>
 
+		<!-- Template -->
+		<template id="item-template">
+			<div class="item-placeholder">
+				<img id="accessory-img" src="assets/accessories/cap-yellow.png" class="items toggleSelected" accessoryid="0" onclick="selectedAccessory(this)">
+				<p>5 pts</p>
+			</div>
+		</template>
 
 
 	<!-- JavaScript -->
@@ -87,24 +98,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
+	<script src="store.js" type="text/javascript"></script>
+
 	<script>
 
-		var points = 30;
-
-		// $(document).ready(()=> {
-		// 	$.ajax({
-		// 		url: '/points',
-		// 		type: 'GET',
-		// 		dataType: 'json',
-		// 		success: (data) => {
-		// 			console.log(data);
-		// 			points = data.points;
-		// 		}
-		// 	});
-		// });
+		// var points = 30;
 
 		// called from clicking on accessory
-		function toPurchase( pts ) {
+		function toPurchase( pts ){
 			console.log( "toPurchase() " + pts + " pts");
 			console.log("current points ", points);
 			// Subtract from points to spend
@@ -121,6 +122,9 @@
 			// Update current points
 			$(document).ready(function() {
 				$("#ptsTotal").text(points + " pts");
+
+
+
 			});
 
 			// Toggle selected accessory

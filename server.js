@@ -340,6 +340,29 @@ app.get('/', (req, res) => {
 // });
 
 
+
+
+// SHELLY'S DUMMY SCRATCH WORK BELOW THIS LINE 
+
+app.post( '/store', ( req, res ) => {
+  db.all( 'SELECT points FROM children_to_user WHERE childid=$childid' ), {
+    $childid: req.body.childid
+  }, ( err, data ) => {
+    console.log( 'total points ' + data );
+    if( data.length > 0 ) {
+      res.send( data );
+    } else {
+      console.log( 'error' );
+      res.sendStatus( 500 );
+    }
+  }
+});
+
+
+
+// AND ABOVE THIS LINE
+
+
 app.listen(3000, () => {
   console.log('Server started at http://localhost:3000/');
 });
