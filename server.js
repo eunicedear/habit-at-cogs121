@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 // Initialize express instance
 const app = express();
 
+app.set('port', (process.env.PORT || 3000));
+
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({
   extended: true
@@ -342,7 +344,7 @@ app.get('/', (req, res) => {
 
 
 
-// SHELLY'S DUMMY SCRATCH WORK BELOW THIS LINE 
+// SHELLY'S DUMMY SCRATCH WORK BELOW THIS LINE
 
 app.post( '/store', ( req, res ) => {
   db.all( 'SELECT points FROM children_to_user WHERE childid=$childid' ), {
@@ -362,7 +364,10 @@ app.post( '/store', ( req, res ) => {
 
 // AND ABOVE THIS LINE
 
-
-app.listen(3000, () => {
-  console.log('Server started at http://localhost:3000/');
+app.listen(app.get('port'), function() {
+  listenForNotificationRequests();
 });
+
+// app.listen(3000, () => {
+//   console.log('Server started at http://localhost:3000/');
+// });
